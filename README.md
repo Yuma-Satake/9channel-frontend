@@ -3,3 +3,4 @@
 ## members
 
 - Yoshida-Sota
+- Yuma-Satake
