@@ -1,16 +1,16 @@
-import { FC } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomePage } from "../pages/HomePage";
-import { DetailPage } from "../pages/DetailPage";
+import { FC } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { HomePage } from '../pages/HomePage';
+import { DetailPage } from '../pages/DetailPage';
 
 export const Router: FC = () => {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <HomePage />,
     },
     {
-      path: "/detail",
+      path: '/detail',
       element: <DetailPage />,
     },
   ]);

@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { Container } from '@mui/material';
+import { FC, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -9,10 +9,5 @@ type Props = {
  * Primary Layout
  */
 export const PrimaryLayout: FC<Props> = ({ children }) => {
-  return (
-    <Container maxWidth='lg'>
-      PrimaryLayout
-      {children}
-    </Container>
-  );
+  return <Container maxWidth="lg">{children}</Container>;
 };
