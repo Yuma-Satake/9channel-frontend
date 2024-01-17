@@ -1,33 +1,86 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import Logo from "./assets/logo.png"
+import { Flare, FlashOff } from '@mui/icons-material'
+import { red } from '@mui/material/colors'
+import { bottomNavigationActionClasses } from '@mui/material'
+import { Stack } from "@mui/material"
+
+const threds = [
+  {
+    thredId: 1,
+    title: "タイトル1",
+
+  },
+  {
+    thredId: 2,
+    title: "タイトル2",
+
+  },
+  {
+    thredId: 3,
+    title: "タイトル3",
+
+  },
+  {
+    thredId: 4,
+    title: "タイトル4",
+
+  },
+  {
+    thredId: 5,
+    title: "タイトル5",
+
+  },
+
+]
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <img src={Logo}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      
+      <div style={{
+        color: "blue",
+        alignItems:"center",
+      
+      }}>
+      <h2>本日のおすすめ</h2>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
+      <div style={{
+        padding: 20,
+        margin: 5, 
+        border: "2px solid #0000ff",
+        alignItems:"center",
+        borderBottom: "1px solid #0000ff",
+      }}> 
+        {
+          threds.map((thred) => {
+            return (
+            <Stack
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="center"
+              spacing={2}
+              
+            >
+            <img style={{
+              aspectRatio: "1/1",
+              width: "120px",
+              height:"auto",
+              objectFit: "cover",
+            }} src={Logo} />
+              <p>{thred.title}</p>
+            </Stack>)
+          }
+          )
+        }
+    </div>
     </>
   )
 }
