@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "format": "prettier -w ./",
-    "deploy": "npm run build && firebase deploy --only hosting:channel-9"
+    "deploy": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
