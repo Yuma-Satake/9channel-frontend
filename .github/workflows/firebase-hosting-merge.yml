@@ -18,3 +18,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHANNEL_9_WEB }}'
           channelId: live
           projectId: channel-9-web
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
