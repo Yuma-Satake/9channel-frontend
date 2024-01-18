@@ -6,18 +6,23 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "format": "prettier -w ./"
+    "format": "prettier -w ./",
+    "deploy": "npm run build && firebase deploy --only hosting:channel-9"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
+    "firebase": "^10.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.2"
+    "react-router-dom": "^6.21.2",
+    "vite": "^5.0.11"
   },
   "devDependencies": {
+    "@esbuild/darwin-arm64": "^0.19.11",
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -26,7 +31,6 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "typescript": "^5.2.2"
   }
 }
