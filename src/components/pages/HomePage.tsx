@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { PrimaryLayout } from '../layout/PrimaryLayout';
-import { BottomNavigation, Button, Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import Logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,8 +33,6 @@ const threds = [
 export const HomePage: FC = () => {
   const navigate = useNavigate();
 
-  const menuList = ['板一覧', 'hario.9ch.nkc'];
-
   const menuList2 = [
     {
       label: '板一覧',
@@ -61,6 +59,7 @@ export const HomePage: FC = () => {
           {menuList2.map((item) => {
             return (
               <Button
+                key={item.path}
                 variant="text"
                 onClick={() => {
                   navigate(item.path);
@@ -105,6 +104,7 @@ export const HomePage: FC = () => {
             return (
               <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={0}>
                 <Button
+                  key={thred.thredId}
                   style={{
                     width: '100%',
                     textAlign: 'left',
