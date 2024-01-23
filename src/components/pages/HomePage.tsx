@@ -1,36 +1,45 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { PrimaryLayout } from '../layout/PrimaryLayout';
 import { Button, Stack } from '@mui/material';
 import Logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
-const threds = [
-  {
-    thredId: 1,
-    title: 'タイトル1',
-  },
-  {
-    thredId: 2,
-    title: 'タイトル2',
-  },
-  {
-    thredId: 3,
-    title: 'タイトル3',
-  },
-  {
-    thredId: 4,
-    title: 'タイトル4',
-  },
-  {
-    thredId: 5,
-    title: 'タイトル5',
-  },
-];
+// const threds = [
+//   {
+//     thredId: 1,
+//     title: 'タイトル1',
+//   },
+//   {
+//     thredId: 2,
+//     title: 'タイトル2',
+//   },
+//   {
+//     thredId: 3,
+//     title: 'タイトル3',
+//   },
+//   {
+//     thredId: 4,
+//     title: 'タイトル4',
+//   },
+//   {
+//     thredId: 5,
+//     title: 'タイトル5',
+//   },
+// ];
 
 /**
  * Home Page
  */
+type threds = {
+  thredTitle: string; //スレッドのタイトル
+  threadContent: string; //スレッドの内容
+  thredId: string; //スレッドのID
+  thredImage: string; //スレッドの画像
+  ownerId: string; //スレッドの投稿者名
+  createdAt: Date; //スレッドの作成日時
+};
 export const HomePage: FC = () => {
+  const [threds] = useState<threds[]>([]); //スレッドの情報を格納する配列
   const navigate = useNavigate();
 
   const menuList2 = [
@@ -100,18 +109,18 @@ export const HomePage: FC = () => {
             alignItems: 'center',
           }}
         >
-          {threds.map((thred) => {
+          {threds.map((threds) => {
             return (
               <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={0}>
                 <Button
-                  key={thred.thredId}
+                  key={threds.thredId}
                   style={{
                     width: '100%',
                     textAlign: 'left',
                     borderBottom: '1px solid #e6e6fa',
                   }}
                   onClick={() => {
-                    navigate(`/detail?threadId=${thred.thredId}`);
+                    navigate(`/detail?threadId=${threds.thredId}`);
                   }}
                 >
                   <img
@@ -121,9 +130,11 @@ export const HomePage: FC = () => {
                       height: 'auto',
                       objectFit: 'cover',
                     }}
-                    src={Logo}
+                    src={threds.thredImage}
                   />
-                  <p>{thred.title}</p>
+                  {threds.thredTitle}
+                  {threds.threadContent}
+                  {threds.ownerId}
                 </Button>
               </Stack>
             );
