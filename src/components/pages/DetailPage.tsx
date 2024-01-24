@@ -23,7 +23,6 @@ const userID = [
     userID: '000001',
   },
 ];
-
 /**
  * Detail Page
  */
@@ -157,22 +156,17 @@ export const DetailPage: FC = () => {
                 fontSize: '20px',
               }}
             >
-              名前: <input type="text" name="name" /> 　　　　
+              名前: <input type="text" name="name" />
             </Stack>
-            <div
+            <textarea
               style={{
-                display: 'block',
-                borderTop: '1px solid #e6e6fa',
+                width: '95%',
               }}
+              rows={5}
+              cols={60}
             >
-              <textarea
-                style={{
-                  width: '95%',
-                }}
-                rows={5}
-                cols={60}
-              ></textarea>
-            </div>
+              本文入力
+            </textarea>
             <div
               style={{
                 display: 'block',

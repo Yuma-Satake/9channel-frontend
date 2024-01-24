@@ -30,6 +30,7 @@ const threds = [
 /**
  * Home Page
  */
+
 export const HomePage: FC = () => {
   const navigate = useNavigate();
 
@@ -71,7 +72,14 @@ export const HomePage: FC = () => {
           })}
         </Stack>
         <Stack alignItems="center">
-          <img style={{}} src={Logo} />
+          <img
+            style={{
+              width: '120px',
+              height: 'auto',
+              objectFit: 'cover',
+            }}
+            src={Logo}
+          />
           <p
             style={{
               textAlign: 'center',
@@ -116,14 +124,19 @@ export const HomePage: FC = () => {
                 >
                   <img
                     style={{
-                      aspectRatio: '1/1',
                       width: '120px',
                       height: 'auto',
                       objectFit: 'cover',
                     }}
                     src={Logo}
                   />
-                  <p>{thred.title}</p>
+                  <p
+                    style={{
+                      fontSize: '15px',
+                    }}
+                  >
+                    {thred.title}
+                  </p>
                 </Button>
               </Stack>
             );
@@ -145,6 +158,7 @@ export const HomePage: FC = () => {
             </Button>
           </Stack>
         </div>
+        <div style={{}}></div>
       </div>
     </PrimaryLayout>
   );
