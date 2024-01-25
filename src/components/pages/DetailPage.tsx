@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 import { PrimaryLayout } from '../layout/PrimaryLayout';
+import Logo from '../../assets/logo.png';
 // const userID = [
 //   {
 //     usernaem: '',
@@ -30,17 +31,8 @@ export const DetailPage: FC = () => {
   const query = new URLSearchParams(window.location.search);
   const threadId = query.get('threadId');
 
-  const ReplyForm = () => {
-    const [name, setName] = useState('');
-    const [text, setText] = useState('');
-
-    function handleNameChange(event: any) {
-      setName(event.target.value);
-    }
-    function handleTextChange(event: any) {
-      setText(event.target.value);
-    }
-  };
+  const [name, setName] = useState('');
+  const [text, setText] = useState('');
 
   return (
     <PrimaryLayout>
@@ -181,8 +173,31 @@ export const DetailPage: FC = () => {
             borderTop: '1px solid #e6e6fa',
           }}
         >
-          <h2>レスを投稿する</h2>
-          <form></form>
+          <h2>リプライする</h2>
+          <Stack direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={4}>
+            <TextField value={name} label="name" onChange={(e) => setName(e.target.value)} />
+            <TextField
+              value={text}
+              id="filled-multiline-static"
+              multiline
+              rows={4}
+              label="本文入力"
+              onChange={(e) => setText(e.target.value)}
+            />
+          </Stack>
+          <br />
+          <Button
+            variant="text"
+            onClick={() => {
+              alert('投稿します');
+            }}
+            style={{
+              alignItems: 'center',
+              fontSize: '25px',
+            }}
+          >
+            投稿する
+          </Button>
         </div>
         <div
           style={{
@@ -200,6 +215,26 @@ export const DetailPage: FC = () => {
             <a href="#">一番上に移動</a>
           </Button>
         </div>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={0.5}
+          style={{
+            backgroundColor: '#f5f5f5',
+          }}
+        >
+          <img
+            style={{
+              width: '20%',
+              height: 'auto',
+              objectFit: 'cover',
+            }}
+            src={Logo}
+          />
+          <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={5}>
+            https://channel-9-web.web.app
+          </Stack>
+        </Stack>
       </div>
     </PrimaryLayout>
   );
