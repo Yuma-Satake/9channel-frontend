@@ -122,6 +122,7 @@ export const HomePage: FC = () => {
           {threds.map((thred) => {
             return (
               <Stack
+                key={thred.thredId}
                 direction="row"
                 justifyContent="flex-start"
                 alignItems="flex-start"
@@ -131,7 +132,6 @@ export const HomePage: FC = () => {
                 }}
               >
                 <Button
-                  key={thred.thredId}
                   style={{
                     borderBottom: '1px solid #e6e6fa',
                   }}
