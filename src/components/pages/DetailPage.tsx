@@ -2,28 +2,7 @@ import { FC, useState } from 'react';
 import { Button, Stack, TextField } from '@mui/material';
 import { PrimaryLayout } from '../layout/PrimaryLayout';
 import Logo from '../../assets/logo.png';
-// const userID = [
-//   {
-//     usernaem: '',
-//     userID: '000001',
-//   },
-//   {
-//     usernaem: '投稿者1',
-//     userID: '000001',
-//   },
-//   {
-//     usernaem: '投稿者1',
-//     userID: '000001',
-//   },
-//   {
-//     usernaem: '投稿者1',
-//     userID: '000001',
-//   },
-//   {
-//     usernaem: '投稿者1',
-//     userID: '000001',
-//   },
-// ];
+
 /**
  * Detail Page
  */
@@ -62,7 +41,7 @@ export const DetailPage: FC = () => {
           <a href="/list">ログイン</a>
         </Stack>
         <h1>
-          松本人志　週刊文春提訴　賠償請求額は約５億５千万円　報道から２６日－芸人人生かけ動き出す一方、元タレントが顔出し告発
+          松本人志週刊文春提訴賠償請求額は約５億５千万円報道から２６日－芸人人生かけ動き出す一方、元タレントが顔出し告発
         </h1>
         <br />
         <div
@@ -73,7 +52,7 @@ export const DetailPage: FC = () => {
           }}
         >
           <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={4}>
-            <div>▼0001　</div>
+            <div>▼0001</div>
 
             <div
               style={{
@@ -92,7 +71,7 @@ export const DetailPage: FC = () => {
               fontSize: '18px',
             }}
           >
-            投稿日: 2021/10/01 12:00:00　　　 ID: 1234567（userid）
+            投稿日: 2021/10/01 12:00:00 ID: 1234567（userid）
             <div
               style={{
                 margin: '5px',
@@ -137,7 +116,7 @@ export const DetailPage: FC = () => {
               fontSize: '18px',
             }}
           >
-            投稿日: 2021/10/01 12:00:00　　　　ID: userID
+            投稿日: 2021/10/01 12:00:00ID: userID
           </Stack>
           <div
             style={{
