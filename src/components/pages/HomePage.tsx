@@ -3,7 +3,6 @@ import { PrimaryLayout } from '../layout/PrimaryLayout';
 import { Button, Stack } from '@mui/material';
 import Logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { Style } from '@mui/icons-material';
 
 const threds = [
   {
