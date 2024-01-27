@@ -280,7 +280,6 @@ export const HomePage: FC = () => {
             </Stack>
           </Stack>
           <Stack direction="row" justifyContent="center" spacing={3}>
-            {/* キャンセルとsubmitのボタン */}
             <Button
               variant="outlined"
               onClick={() => {
