@@ -5,7 +5,8 @@ const storageBucket = 'channel-9-web.appspot.com';
 const messagingSenderId = '488740948186';
 const appId = '1:488740948186:web:1c108baa673b3355fb7de3';
 
-const apiUrl = 'http://35.73.255.103:8080/api/';
+// const apiUrl = 'http://35.73.255.103:8080/api/';
+const apiUrl = 'http://localhost:8080/api/';
 
 export const VITE_API_KEY = String(import.meta.env.VITE_API_KEY ?? apiKey);
 export const VITE_AUTH_DOMAIN = String(import.meta.env.VITE_AUTH_DOMAIN ?? authDomain);

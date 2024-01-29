@@ -72,7 +72,7 @@ export const DetailPage: FC = () => {
           margin: 10,
           border: '2px solid #e6e6fa',
           alignItems: 'center',
-          backgroundColor: '#0000;',
+          backgroundColor: '#0000',
         }}
       >
         <Stack
@@ -103,7 +103,7 @@ export const DetailPage: FC = () => {
           style={{
             fontSize: '20px',
             border: '1px solid #e6e6fa',
-            backgroundColor: '#0000;',
+            backgroundColor: '#0000',
           }}
         >
           <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={4}>
@@ -155,7 +155,7 @@ export const DetailPage: FC = () => {
                 fontSize: '20px',
                 display: 'block',
                 border: '1px solid #e6e6fa',
-                backgroundColor: '#0000;',
+                backgroundColor: '#0000',
               }}
             >
               {/* ▼0002 名前: 名無しさん */}
@@ -202,7 +202,7 @@ export const DetailPage: FC = () => {
         <div
           style={{
             alignItems: 'center',
-            backgroundColor: '#0000;',
+            backgroundColor: '#0000',
             borderTop: '1px solid #e6e6fa',
           }}
         >

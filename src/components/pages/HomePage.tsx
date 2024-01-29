@@ -69,14 +69,14 @@ export const HomePage: FC = () => {
             display: 'block',
             margin: 10,
             border: '2px solid #e6e6fa',
-            backgroundColor: '#0000;',
+            backgroundColor: '#0000',
           }}
         >
           <Stack direction="row" justifyContent="space-around" alignItems="baseline">
             {menuList2.map((item) => {
               return (
                 <Button
-                  key={item.path}
+                  key={item.path + item.label}
                   variant="text"
                   onClick={() => {
                     if (item.onClick) {
@@ -138,47 +138,48 @@ export const HomePage: FC = () => {
               borderBottom: '2px solid #e6e6fa',
             }}
           >
-            {threads.map((thread) => {
-              return (
-                <Stack
-                  key={thread.thread_id}
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
-                  spacing={0}
-                  style={{
-                    width: '100%',
-                  }}
-                >
-                  <Button
+            {threads &&
+              threads.map((thread) => {
+                return (
+                  <Stack
+                    key={thread.thread_id}
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    spacing={0}
                     style={{
-                      borderBottom: '1px solid #e6e6fa',
-                    }}
-                    onClick={() => {
-                      navigate(`/detail?threadId=${thread.thread_id}`);
+                      width: '100%',
                     }}
                   >
-                    <img
+                    <Button
                       style={{
-                        width: '120px',
-                        height: 'auto',
-                        objectFit: 'cover',
+                        borderBottom: '1px solid #e6e6fa',
                       }}
-                      src={Logo}
-                    />
-                    <div
-                      style={{
-                        textAlign: 'left',
-                        display: 'inline-block',
-                        fontSize: '18px',
+                      onClick={() => {
+                        navigate(`/detail?threadId=${thread.thread_id}`);
                       }}
                     >
-                      {thread.thread_title}
-                    </div>
-                  </Button>
-                </Stack>
-              );
-            })}
+                      <img
+                        style={{
+                          width: '120px',
+                          height: 'auto',
+                          objectFit: 'cover',
+                        }}
+                        src={Logo}
+                      />
+                      <div
+                        style={{
+                          textAlign: 'left',
+                          display: 'inline-block',
+                          fontSize: '18px',
+                        }}
+                      >
+                        {thread.thread_title}
+                      </div>
+                    </Button>
+                  </Stack>
+                );
+              })}
             <Stack direction="row" justifyContent="flex-end" alignItems="flex-start" spacing={3}>
               {/* <Button
               variant="text"
@@ -297,7 +298,7 @@ export const HomePage: FC = () => {
             <Button
               variant="contained"
               onClick={async () => {
-                await axiosBase.post('/thread', {
+                await axiosBase.post('/createThread', {
                   thread_title: threadTitle,
                   thread_content: threadContent,
                 });
