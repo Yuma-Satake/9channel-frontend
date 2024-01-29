@@ -1,10 +1,12 @@
-import { Axios } from 'axios';
+import axios from 'axios';
 import { VITE_API_URL } from './env';
 
-export const axiosBase = new Axios({
+export const axiosBase = axios.create({
   baseURL: VITE_API_URL,
   responseType: 'json',
-  headers: { 'Access-Control-Allow-Origin': '*' },
+  headers: {
+    'Content-Type': 'application/json',
+  },
   transformRequest: [
     function transformRequest(data) {
       return JSON.stringify(data);
