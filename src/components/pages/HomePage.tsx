@@ -39,7 +39,7 @@ export const HomePage: FC = () => {
   useEffect(() => {
     (async () => {
       const res = await axiosBase.get('/latest');
-      setThreads(res.data.thread);
+      setThreads(res.data.threads);
     })();
   }, []);
 
@@ -138,7 +138,7 @@ export const HomePage: FC = () => {
               borderBottom: '2px solid #e6e6fa',
             }}
           >
-            {threads &&
+            {threads.length > 0 &&
               threads.map((thread) => {
                 return (
                   <Stack
