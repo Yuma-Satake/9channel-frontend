@@ -23,13 +23,56 @@ export type ReplyItem = {
   updated_at: Date;
 };
 
+const initObj = [
+  {
+    thread_id: 3,
+    thread_title:
+      '三菱がどうしても「巨大ピックアップトラック」を日本投入したいワケ 価格も高めの「トライトン」',
+    thread_content:
+      '三菱自動車が12年振りに国内復活を決断した1トンピックアップトラック「トライトン」が、2024年2月15日より正式に発売されます。1980年代にはRVブームを受けて、トヨタや日産、三菱に加え、マツダといすゞも参入していたピックアップトラックですが、2000年代には全社が国内から撤退。それ以来、国産ピックアップトラック不在の時代が長らく続きました。https://trafficnews.jp/post/130655',
+    owner_id: '3',
+    created_at: '2024-01-17T00:00:00.000000Z',
+    // ランダムな画像
+    img_url: 'https://picsum.photos/200/300',
+  },
+  {
+    thread_id: 7,
+    thread_title: '【🌸】スタバ、新作チルドカップ「さくら抹茶 with さくらジェリー」発売',
+    thread_content:
+      'さくらの香りがふわりと広がるドリンク。クリーミーなミルクにまろやかな抹茶を合わせ、楽しい食感のさくらジェリーもプラス。春を感じる華やかな味わいを楽しめる。2月6日から期間限定で発売。',
+    owner_id: '7',
+    created_at: '2024-01-17T00:00:00.000000Z',
+    img_url: null,
+  },
+  {
+    thread_id: 6,
+    thread_title:
+      '中国警察、偽造AirPodsの大規模シンジケートを摘発！ ニセモノ6万9000台以上、総額は約34億円',
+    thread_content:
+      '中国・四川省の警察当局が、大規模な偽造AirPodsシンジケートを摘発したと報じられています。',
+    owner_id: '6',
+    created_at: '2024-01-17T00:00:00.000000Z',
+    img_url: null,
+  },
+  {
+    thread_id: 8,
+    thread_title:
+      '｢〇〇家式場｣街角で宣伝する意味なくね？仕事帰りとか｢おっ！やってるやってる｣て寄ってったりするの？',
+    thread_content:
+      '｢〇〇家式場｣街角で宣伝する意味なくね？仕事帰りとか｢おっ！やってるやってる｣て寄ってったりするの？',
+    owner_id: '8',
+    created_at: '2024-01-17T00:00:00.000000Z',
+    img_url: null,
+  },
+];
+
 /**
  * Home Page
  */
 
 export const HomePage: FC = () => {
   const navigate = useNavigate();
-  const [threads, setThreads] = useState<ThreadItem[]>([]);
+  const [threads, setThreads] = useState<ThreadItem[]>(initObj);
 
   // スレッド作成
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -39,6 +82,7 @@ export const HomePage: FC = () => {
   useEffect(() => {
     (async () => {
       const res = await axiosBase.get('/latest');
+      console.log(res.data.threads);
       setThreads(res.data.threads);
     })();
   }, []);
@@ -72,8 +116,8 @@ export const HomePage: FC = () => {
             backgroundColor: '#0000',
           }}
         >
-          <Stack direction="row" justifyContent="space-around" alignItems="baseline">
-            {menuList2.map((item) => {
+          <Stack direction="row" justifyContent="space-around" alignItems="baseline" sx={{ p: 4 }}>
+            {menuList2.map((item, index) => {
               return (
                 <Button
                   key={item.path + item.label}
@@ -136,6 +180,7 @@ export const HomePage: FC = () => {
             style={{
               borderTop: '2px solid #e6e6fa',
               borderBottom: '2px solid #e6e6fa',
+              padding: 20,
             }}
           >
             {threads.length > 0 &&
@@ -154,9 +199,21 @@ export const HomePage: FC = () => {
                     <Button
                       style={{
                         borderBottom: '1px solid #e6e6fa',
+                        gap: '20px',
                       }}
                       onClick={() => {
-                        navigate(`/detail?threadId=${thread.thread_id}`);
+                        // navigate(`/detail?threadId=${thread.thread_id}`);
+
+                        // 以下のデータをqueryで渡す
+                        // thread_id: 3,
+                        // thread_title:
+                        //   '高校生4人逮捕、住宅を襲撃 女性の口ふさぎ「金があるのは分かっている」 5千円奪う [蚤の市★]',
+                        // thread_content:
+                        //   '高校生4人を逮捕、住宅を襲撃…女性の口ふさぎ「金があるのは分かっている」、包丁を見せて暴行し5千円奪う',
+                        // owner_id: '3',
+                        navigate(
+                          `/detail?threadId=${thread.thread_id}&threadTitle=${thread.thread_title}&threadContent=${thread.thread_content}&ownerId=${thread.owner_id}&createdAt=${thread.created_at}&imgUrl=${thread.img_url}`
+                        );
                       }}
                     >
                       <img
@@ -164,8 +221,10 @@ export const HomePage: FC = () => {
                           width: '120px',
                           height: 'auto',
                           objectFit: 'cover',
+                          aspectRatio: '1/1',
+                          borderRadius: '10px',
                         }}
-                        src={Logo}
+                        src="https://source.unsplash.com/random"
                       />
                       <div
                         style={{
@@ -200,18 +259,41 @@ export const HomePage: FC = () => {
           <Stack
             direction="column"
             alignItems="center"
-            spacing={0.5}
+            spacing={1}
             style={{
               backgroundColor: '#f5f5f5',
+              padding: 20,
             }}
           >
+            CMです
             <img
               style={{
-                width: '20%',
-                height: 'auto',
+                // width: '20%',
+                width: '100%',
+                height: '100px',
                 objectFit: 'cover',
               }}
-              src={Logo}
+              src="/10.39.26.png"
+            />
+            <img
+              style={{
+                // width: '20%',
+                width: '100%',
+                height: '100px',
+                objectFit: 'cover',
+              }}
+              src="/10.41.56.png"
+            />
+            <img
+              style={{
+                // width: '20%',
+                width: '50%',
+                height: 'auto',
+                textAlign: 'center',
+                display: 'flex',
+                objectFit: 'cover',
+              }}
+              src="5f872c64f449a776.gif"
             />
             <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={5}>
               https://channel-9-web.web.app
@@ -298,10 +380,18 @@ export const HomePage: FC = () => {
             <Button
               variant="contained"
               onClick={async () => {
-                await axiosBase.post('/createThread', {
-                  thread_title: threadTitle,
-                  thread_content: threadContent,
-                });
+                // threadに追加
+                setThreads([
+                  ...threads,
+                  {
+                    thread_id: Math.floor(Math.random() * 100),
+                    thread_title: threadTitle,
+                    thread_content: threadContent,
+                    owner_id: '999',
+                    created_at: '2024-01-17T00:00:00.000000Z',
+                    img_url: null,
+                  },
+                ]);
                 setIsModalOpen(false);
                 setThreadTitle('');
                 setThreadContent('');

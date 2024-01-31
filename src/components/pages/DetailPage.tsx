@@ -5,6 +5,15 @@ import Logo from '../../assets/logo.png';
 import { ReplyItem, ThreadItem } from './HomePage';
 import { axiosBase } from '../lib/axiosUtil';
 
+// ReplyItem = {
+//   reply_id: number;
+//   thread_id: number;
+//   user_id: number | null;
+//   body: string;
+//   created_at: Date;
+//   updated_at: Date;
+// };
+
 /**
  * Detail Page
  */
@@ -28,39 +37,72 @@ export const DetailPage: FC = () => {
   };
 
   const onReplySubmit = async () => {
-    await axiosBase.post('/createReply', {
-      params: {
-        thread_id: threadId,
+    setReply((prev) => [
+      ...prev,
+      {
+        reply_id: 3,
+        thread_id: 3,
+        user_id: 1,
         body: text,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
-    });
+    ]);
+
+    // await axiosBase.post('/createReply', {
+    //   params: {
+    //     thread_id: threadId,
+    //     body: text,
+    //   },
+    // });
 
     setText('');
 
     // スレッドを再読み
-    await updateReply();
+    // await updateReply();
   };
 
   useEffect(() => {
-    if (threadId !== null) {
-      (async () => {
-        const threadPromise = axiosBase.get('/thread', {
-          params: {
-            thread_id: threadId,
-          },
-        });
+    // 以下のデータをqueryから取得して、threadにセットする
+    // thread_id: 3,
+    // thread_title:
+    //   '高校生4人逮捕、住宅を襲撃 女性の口ふさぎ「金があるのは分かっている」 5千円奪う [蚤の市★]',
+    // thread_content:
+    //   '高校生4人を逮捕、住宅を襲撃…女性の口ふさぎ「金があるのは分かっている」、包丁を見せて暴行し5千円奪う',
+    // owner_id: '3',
 
-        const replyPromise = axiosBase.get('/reply', {
-          params: {
-            thread_id: threadId,
-          },
-        });
+    const query = new URLSearchParams(window.location.search);
+    const threadId = query.get('threadId');
+    const thread_title = query.get('threadTitle');
+    const thread_content = query.get('threadContent');
+    const owner_id = query.get('ownerId');
 
-        const [threadRes, replyRes] = await Promise.all([threadPromise, replyPromise]);
-        setThread(threadRes.data.thread);
-        setReply(replyRes.data.reply);
-      })();
-    }
+    setThread({
+      thread_id: Number(threadId),
+      thread_title: thread_title || '',
+      thread_content: thread_content || '',
+      owner_id: owner_id || '',
+      created_at: String(new Date()),
+      img_url: '',
+    });
+
+    // if (threadId !== null) {
+    //   (async () => {
+    //     const threadPromise = axiosBase.get('/thread', {
+    //       params: {
+    //         thread_id: threadId,
+    //       },
+    //     });
+    //     const replyPromise = axiosBase.get('/reply', {
+    //       params: {
+    //         thread_id: threadId,
+    //       },
+    //     });
+    //     const [threadRes, replyRes] = await Promise.all([threadPromise, replyPromise]);
+    //     setThread(threadRes.data.thread);
+    //     setReply(replyRes.data.reply);
+    //   })();
+    // }
   }, []);
 
   if (threadId === null || thread === null) return <h1>読み込み中です</h1>;
@@ -257,13 +299,35 @@ export const DetailPage: FC = () => {
             backgroundColor: '#f5f5f5',
           }}
         >
+          CMです
           <img
             style={{
-              width: '20%',
-              height: 'auto',
+              // width: '20%',
+              width: '100%',
+              height: '100px',
               objectFit: 'cover',
             }}
-            src={Logo}
+            src="/10.39.26.png"
+          />
+          <img
+            style={{
+              // width: '20%',
+              width: '100%',
+              height: '100px',
+              objectFit: 'cover',
+            }}
+            src="/10.41.56.png"
+          />
+          <img
+            style={{
+              // width: '20%',
+              width: '100%',
+              height: 'auto',
+              textAlign: 'center',
+              display: 'flex',
+              objectFit: 'cover',
+            }}
+            src="5f872c64f449a776.gif"
           />
           <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={5}>
             https://channel-9-web.web.app
